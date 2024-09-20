@@ -2,7 +2,8 @@ package br.com.alura.screenmatch.modelos;
 
 //Iremos utilizar o conceito de Herança. Serie e Filme possuem os atributos de titulo
 //Série é um titulo, Filme é um titulo e por aí vai.
-public class Titulo {
+//Para ser possivel usar ordenação, devemos usar Comparable
+public class Titulo implements Comparable<Titulo>{
 
     private String nome;
     private int anoDeLancamento;
@@ -67,5 +68,11 @@ public class Titulo {
 
     public double pegaMedia() {
         return somaDasAvaliacoes / totalDeAvaliacoes;
+    }
+
+    @Override
+    public int compareTo(Titulo outroTitulo) {
+        //Comparando por nome do titulo
+        return this.getNome().compareTo(outroTitulo.getNome());
     }
 }

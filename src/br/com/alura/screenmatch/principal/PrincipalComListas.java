@@ -5,6 +5,11 @@ import br.com.alura.screenmatch.modelos.Serie;
 import br.com.alura.screenmatch.modelos.Titulo;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+
+import static java.util.Collection.*;
 
 public class PrincipalComListas {
     public static void main(String[] args) {
@@ -33,5 +38,28 @@ public class PrincipalComListas {
                 System.out.println("Classificação " + filme.getClaffificacao());
             }
         }
+
+        //Estudando ordenação
+        ArrayList<String> buscaPorArtista = new ArrayList<>();
+        buscaPorArtista.add("Adam Sandler");
+        buscaPorArtista.add("Paulo");
+        buscaPorArtista.add("Guilherme");
+        System.out.println(buscaPorArtista);
+
+        //Ordenando em si. Como é string, ele faz por ordem alfabetica
+        Collections.sort(buscaPorArtista);
+        System.out.println("Depois da ordenação: " + buscaPorArtista);
+
+        //Para demais objetos (sem ser variaveis primitivas e string)
+        //Devemos configurar o que e como comparar para ser ordenado
+        System.out.println("Lista de titulos ordenados: ");
+        Collections.sort(listaDeAssistidos);
+        System.out.println(listaDeAssistidos);
+        //Outra forma de comparar por nome
+//        listaDeAssistidos.sort(Comparator.comparing(Titulo::getNome));
+        //Ordenando por ano
+        listaDeAssistidos.sort(Comparator.comparing(Titulo::getAnoDeLancamento));
+        System.out.println(listaDeAssistidos);
+
     }
 }
