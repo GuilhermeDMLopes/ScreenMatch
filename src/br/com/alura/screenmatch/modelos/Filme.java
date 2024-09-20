@@ -75,9 +75,15 @@ public class Filme extends Titulo implements Classificavel {
     }
 */
 
-    public Filme(String nome) {
+   /* public Filme(String nome) {
         this.setNome(nome);
+    }*/
+
+    //Novo construtor seguindo Titulo
+    public Filme(String nome, int anoDeLancamento) {
+        super(nome, anoDeLancamento);
     }
+
 
     //Atributos específicos de Filme
     private String diretor;

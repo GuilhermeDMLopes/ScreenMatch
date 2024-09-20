@@ -6,6 +6,11 @@ public class Serie extends Titulo{
     private int episodiosPorTemporada;
     private int minutosPorEpisodio;
 
+    //Criando construtor para ficar igual a Titulo
+    public Serie(String nome, int anoDeLancamento) {
+        super(nome, anoDeLancamento);
+    }
+
     public int getTemporadas() {
         return temporadas;
     }

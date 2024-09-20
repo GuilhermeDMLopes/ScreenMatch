@@ -22,9 +22,9 @@ public class Principal {
         //System.out.println(meuFilme.getTotalDeAvaliacoes());
         //System.out.println(meuFilme.pegaMedia());
 
-        Serie lost = new Serie();
-        lost.setNome("Lost");
-        lost.setAnoDeLancamento(2000);
+        Serie lost = new Serie("Lost", 2000);
+//        lost.setNome("Lost");
+//        lost.setAnoDeLancamento(2000);
         lost.exibeFichaTecnica();
         lost.setTemporadas(10);
         lost.setEpisodiosPorTemporada(10);
@@ -56,10 +56,10 @@ public class Principal {
 
         //Outra forma de instanciar Filme
         //var filmeDoGui = new Filme();
-        var filmeDoGui = new Filme("Velozes e Furiosos");
+        var filmeDoGui = new Filme("Velozes e Furiosos", 2024);
         filmeDoGui.setDuracaoEmMinutos(280);
 //        filmeDoGui.setNome("Velozes e Furiosos");
-        filmeDoGui.setAnoDeLancamento(2024);
+//        filmeDoGui.setAnoDeLancamento(2024);
         filmeDoGui.avaliaFilme(10);
 
         //Criando lista de Filmes

@@ -11,6 +11,12 @@ public class Titulo {
     private int totalDeAvaliacoes;
     private int duracaoEmMinutos;
 
+    //Adicionando construtores para Filmes e Series usarem
+    public Titulo(String nome, int anoDeLancamento) {
+        this.nome = nome;
+        this.anoDeLancamento = anoDeLancamento;
+    }
+
     //Metodo acessor para pegar valores de atributos privados
     public int getTotalDeAvaliacoes() {
         return totalDeAvaliacoes;
