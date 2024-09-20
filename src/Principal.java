@@ -10,8 +10,8 @@ public class Principal {
     public static void main(String[] args) {
 //        Filme meuFilme = new Filme();
 //        meuFilme.setNome("Star Wars");
-        Filme meuFilme = new Filme("Star Wars");
-        meuFilme.setAnoDeLancamento(1980);
+        Filme meuFilme = new Filme("Star Wars", 1980);
+//        meuFilme.setAnoDeLancamento(1980);
         meuFilme.setDuracaoEmMinutos(180);
 
         meuFilme.exibeFichaTecnica();
@@ -33,8 +33,8 @@ public class Principal {
 
 //        Filme outroFilme = new Filme();
 //        outroFilme.setNome("Avatar");
-        Filme outroFilme = new Filme("Avatar");
-        outroFilme.setAnoDeLancamento(2023);
+        Filme outroFilme = new Filme("Avatar", 2023);
+//        outroFilme.setAnoDeLancamento(2023);
         outroFilme.setDuracaoEmMinutos(200);
 
         //Usando calculadora
