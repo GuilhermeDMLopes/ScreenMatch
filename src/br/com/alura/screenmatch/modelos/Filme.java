@@ -68,6 +68,17 @@ public class Filme extends Titulo implements Classificavel {
         return somaDasAvaliacoes / totalDeAvaliacoes;
     }*/
 
+    //Criando construtores
+/*
+    public Filme() {
+
+    }
+*/
+
+    public Filme(String nome) {
+        this.setNome(nome);
+    }
+
     //Atributos específicos de Filme
     private String diretor;
 
@@ -83,5 +94,11 @@ public class Filme extends Titulo implements Classificavel {
     @Override
     public int getClaffificacao() {
         return (int) pegaMedia() / 2;
+    }
+
+    //Reescrevendo o toString para personalizar nossa saida do ArrayList.toString()
+    @Override
+    public String toString() {
+        return "Filme: " + this.getNome() + " (" + this.getAnoDeLancamento() + ") ";
     }
 }

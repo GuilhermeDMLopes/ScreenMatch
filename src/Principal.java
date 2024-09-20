@@ -4,10 +4,13 @@ import br.com.alura.screenmatch.modelos.Episodio;
 import br.com.alura.screenmatch.modelos.Filme;
 import br.com.alura.screenmatch.modelos.Serie;
 
+import java.util.ArrayList;
+
 public class Principal {
     public static void main(String[] args) {
-        Filme meuFilme = new Filme();
-        meuFilme.setNome("Star Wars");
+//        Filme meuFilme = new Filme();
+//        meuFilme.setNome("Star Wars");
+        Filme meuFilme = new Filme("Star Wars");
         meuFilme.setAnoDeLancamento(1980);
         meuFilme.setDuracaoEmMinutos(180);
 
@@ -28,8 +31,9 @@ public class Principal {
         lost.setMinutosPorEpisodio(50);
         //System.out.println("Duração total da Serie: " + lost.getDuracaoEmMinutos());
 
-        Filme outroFilme = new Filme();
-        outroFilme.setNome("Avatar");
+//        Filme outroFilme = new Filme();
+//        outroFilme.setNome("Avatar");
+        Filme outroFilme = new Filme("Avatar");
         outroFilme.setAnoDeLancamento(2023);
         outroFilme.setDuracaoEmMinutos(200);
 
@@ -51,6 +55,23 @@ public class Principal {
         filtro.filtra(episodio);
 
         //Outra forma de instanciar Filme
-        //var filmeGui = new Filme();
+        //var filmeDoGui = new Filme();
+        var filmeDoGui = new Filme("Velozes e Furiosos");
+        filmeDoGui.setDuracaoEmMinutos(280);
+//        filmeDoGui.setNome("Velozes e Furiosos");
+        filmeDoGui.setAnoDeLancamento(2024);
+        filmeDoGui.avaliaFilme(10);
+
+        //Criando lista de Filmes
+        ArrayList<Filme> listaDeFilmes = new ArrayList<>();
+        //Adicionando filmes a lista
+        listaDeFilmes.add(filmeDoGui);
+        listaDeFilmes.add(meuFilme);
+        listaDeFilmes.add(outroFilme);
+        System.out.println("Tamanho da lista: " + listaDeFilmes.size());
+        System.out.println("Primeiro filme da lista: " + listaDeFilmes.get(0).getNome());
+        System.out.println("Filmes da lista: " + listaDeFilmes.toString());
+
+
     }
 }
