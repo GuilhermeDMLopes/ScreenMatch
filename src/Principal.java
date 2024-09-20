@@ -49,5 +49,8 @@ public class Principal {
         episodio.setSerie(lost);
         episodio.setTotalVisualizacoes(300);
         filtro.filtra(episodio);
+
+        //Outra forma de instanciar Filme
+        //var filmeGui = new Filme();
     }
 }
