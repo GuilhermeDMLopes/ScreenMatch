@@ -1,5 +1,6 @@
 package br.com.alura.screenmatch.modelos;
 
+import br.com.alura.screenmatch.excecao.ErroDeConversaoDeAnoExcepetion;
 import com.google.gson.annotations.SerializedName;
 
 //Iremos utilizar o conceito de Herança. Serie e Filme possuem os atributos de titulo
@@ -25,6 +26,10 @@ public class Titulo implements Comparable<Titulo>{
 
     public Titulo(TituloOMDB meuTituloOmdb) {
         this.nome = meuTituloOmdb.title();
+        //Criando a propria exceção
+        if(meuTituloOmdb.year().length() > 4) {
+            throw new ErroDeConversaoDeAnoExcepetion("Não consegui converter o ano pois tem mais de 4 caracteres");
+        }
         this.anoDeLancamento = Integer.valueOf(meuTituloOmdb.year());
         this.duracaoEmMinutos = Integer.valueOf(meuTituloOmdb.runtime().substring(0,2));
     }

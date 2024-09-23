@@ -1,5 +1,6 @@
 package br.com.alura.screenmatch.principal;
 
+import br.com.alura.screenmatch.excecao.ErroDeConversaoDeAnoExcepetion;
 import br.com.alura.screenmatch.modelos.Titulo;
 import br.com.alura.screenmatch.modelos.TituloOMDB;
 import com.google.gson.FieldNamingPolicy;
@@ -21,41 +22,54 @@ public class PrincipalComBusca {
         Scanner leitura = new Scanner(System.in);
         System.out.println("Digite um filme para a busca: ");
         var busca = leitura.nextLine();
-        String endereco = "http://www.omdbapi.com/?t=" + busca + "&apikey=8ed9a188";
+        //Alterando busca para problemas com alguns filmes (top gun por exemplo)
+        String endereco = "http://www.omdbapi.com/?t=" + busca.replace(" ", "+") + "&apikey=8ed9a188";
 
-        //Instanciando um cliente
-        HttpClient client = HttpClient.newHttpClient();
+        try {
+            //Instanciando um cliente
+            HttpClient client = HttpClient.newHttpClient();
 
-        //Realizando a requisição
+            //Realizando a requisição
 //        HttpRequest request = HttpRequest.newBuilder()
 //                .uri(URI.create("http://www.omdbapi.com/?i=tt3896198&apikey=8ed9a188"))
 //                .build();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(endereco))
-                .build();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(endereco))
+                    .build();
 
-        //Pegando resposta da requisição
-        HttpResponse<String> response = client
-                .send(request, HttpResponse.BodyHandlers.ofString());
+            //Pegando resposta da requisição
+            HttpResponse<String> response = client
+                    .send(request, HttpResponse.BodyHandlers.ofString());
 
-        //Exibindo corpo da resposta
-        //System.out.println(response.body());
+            //Exibindo corpo da resposta
+            //System.out.println(response.body());
 
-        //Salvando o JSON do response
-        String json = response.body();
-        System.out.println(json);
+            //Salvando o JSON do response
+            String json = response.body();
+            System.out.println(json);
 
-        //Utilizando GSON importado pelo arquivo jar
-        //Utilizando builder para o nome das variaveis na classe omdb e do JSON, estejam iguais
-        Gson gson = new GsonBuilder()
-                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
-                .create();
-        //Transformando um json em uma classe
-        //Titulo meuTitulo = gson.fromJson(json, Titulo.class);
-        TituloOMDB meuTituloOmdb = gson.fromJson(json, TituloOMDB.class);
-        System.out.println(meuTituloOmdb);
-        //Para usar o objeto titulo e seus metodos
-        Titulo meuTitulo = new Titulo(meuTituloOmdb);
-        System.out.println("Titulo convertido: " + meuTitulo);
+            //Utilizando GSON importado pelo arquivo jar
+            //Utilizando builder para o nome das variaveis na classe omdb e do JSON, estejam iguais
+            Gson gson = new GsonBuilder()
+                    .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                    .create();
+            //Transformando um json em uma classe
+            //Titulo meuTitulo = gson.fromJson(json, Titulo.class);
+            TituloOMDB meuTituloOmdb = gson.fromJson(json, TituloOMDB.class);
+            System.out.println(meuTituloOmdb);
+
+            //Exemplo de erro é o gilme divertidamente (ano possui 2018~)
+            //Para usar o objeto titulo e seus metodos
+            Titulo meuTitulo = new Titulo(meuTituloOmdb);
+            System.out.println("Titulo convertido: " + meuTitulo);
+        } catch (NumberFormatException e) {
+            System.out.println("Aconteceu um erro: ");
+            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Algum erro aconteceu no argumento da busca, verifique o endereço");
+        } catch (ErroDeConversaoDeAnoExcepetion e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 }
