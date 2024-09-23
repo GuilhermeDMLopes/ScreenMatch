@@ -1,11 +1,16 @@
 package br.com.alura.screenmatch.modelos;
 
+import com.google.gson.annotations.SerializedName;
+
 //Iremos utilizar o conceito de Herança. Serie e Filme possuem os atributos de titulo
 //Série é um titulo, Filme é um titulo e por aí vai.
 //Para ser possivel usar ordenação, devemos usar Comparable
 public class Titulo implements Comparable<Titulo>{
 
+    //Usando anotação para setar a variavel para um nome do JSON
+//    @SerializedName("Title")
     private String nome;
+//    @SerializedName("Year")
     private int anoDeLancamento;
     private boolean incluidoNoPlano;
     private double somaDasAvaliacoes;
@@ -16,6 +21,12 @@ public class Titulo implements Comparable<Titulo>{
     public Titulo(String nome, int anoDeLancamento) {
         this.nome = nome;
         this.anoDeLancamento = anoDeLancamento;
+    }
+
+    public Titulo(TituloOMDB meuTituloOmdb) {
+        this.nome = meuTituloOmdb.title();
+        this.anoDeLancamento = Integer.valueOf(meuTituloOmdb.year());
+        this.duracaoEmMinutos = Integer.valueOf(meuTituloOmdb.runtime().substring(0,2));
     }
 
     //Metodo acessor para pegar valores de atributos privados
@@ -74,5 +85,12 @@ public class Titulo implements Comparable<Titulo>{
     public int compareTo(Titulo outroTitulo) {
         //Comparando por nome do titulo
         return this.getNome().compareTo(outroTitulo.getNome());
+    }
+
+    @Override
+    public String toString() {
+        return "nome = '" + nome + '\'' +
+                ", anoDeLancamento = " + anoDeLancamento + ", " +
+                "duração = " + duracaoEmMinutos;
     }
 }

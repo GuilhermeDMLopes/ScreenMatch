@@ -1,5 +1,11 @@
 package br.com.alura.screenmatch.principal;
 
+import br.com.alura.screenmatch.modelos.Titulo;
+import br.com.alura.screenmatch.modelos.TituloOMDB;
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -33,6 +39,23 @@ public class PrincipalComBusca {
                 .send(request, HttpResponse.BodyHandlers.ofString());
 
         //Exibindo corpo da resposta
-        System.out.println(response.body());
+        //System.out.println(response.body());
+
+        //Salvando o JSON do response
+        String json = response.body();
+        System.out.println(json);
+
+        //Utilizando GSON importado pelo arquivo jar
+        //Utilizando builder para o nome das variaveis na classe omdb e do JSON, estejam iguais
+        Gson gson = new GsonBuilder()
+                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                .create();
+        //Transformando um json em uma classe
+        //Titulo meuTitulo = gson.fromJson(json, Titulo.class);
+        TituloOMDB meuTituloOmdb = gson.fromJson(json, TituloOMDB.class);
+        System.out.println(meuTituloOmdb);
+        //Para usar o objeto titulo e seus metodos
+        Titulo meuTitulo = new Titulo(meuTituloOmdb);
+        System.out.println("Titulo convertido: " + meuTitulo);
     }
 }
